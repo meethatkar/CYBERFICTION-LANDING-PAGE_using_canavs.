@@ -163,3 +163,10 @@ gsap.to("#page3",{
 }
 locomotive();
 canvas();
+window.addEventListener("load",()=>{
+    let loaderDiv = document.querySelector("#loader");
+    loaderDiv.style.opacity = "0";
+    // loaderDiv.style.height = "0%";
+    loaderDiv.style.width = "0%";
+    loaderDiv.style.zIndex = "0";
+})

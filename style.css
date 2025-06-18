@@ -17,6 +17,69 @@ html,body{
     width: 100%;
     font-family: gilroy;
 }
+
+/* LOADER  */
+#loader{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.918);
+    opacity: 1;
+    transition: all 0.5s ease-in;
+}
+#morphing-spinner{
+    width: 8vw;
+    height: 8vw;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top-color: white;
+    border-bottom-color: white;
+    position: relative;
+    animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    /*  HERE CUBIC-BEZIER(X1,Y1,X2,Y2) , HERE X MUST BE INSIDE RANGE 0-1 AND Y CAN GO OUTSIDE THE RANGE, 
+    OURS EFFECT IS ELASTIC EFFECT, HERE AT START IT GODES LITTLE BACKWARDS AND THEN ROTATES AND GOES 0.55% MORE ITHAN REQUIRED.*/
+}
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+#morphing-spinner::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);      /* INITIAL POSITON */
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-left-color: #696350;
+    border-right-color: #696350;
+    height: 6vw;
+    width: 6vw;
+    animation-name: reverse-spin;
+    animation-iteration-count: infinite;
+    animation-duration: 1.2s;
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@keyframes reverse-spin {
+    /* here translate are -50%, -50% because it's already set in default position*/
+    0%{
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100%{
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+/* MAIN SECTION  */
 #main{
     position: relative;
     overflow: hidden;
